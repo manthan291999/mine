@@ -8,7 +8,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - realtime
+      realtime:
+        condition: service_started
 
   realtime:
     build:
@@ -19,11 +20,16 @@ services:
       REDIS_URL: redis://redis:6379
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/rtcp
       SNAPSHOT_EVERY_UPDATES: 25
+      DOC_CACHE_MAX: 200
+      RATE_LIMIT_PER_MINUTE: 2400
+      AUTH_TOKEN: dev-token
     ports:
       - "4001:4001"
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
 
   postgres:
     image: postgres:16
@@ -33,6 +39,11 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rtcp"]
+      interval: 5s
+      timeout: 3s
+      retries: 8
 
   redis:
     image: redis:7

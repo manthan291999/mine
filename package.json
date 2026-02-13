@@ -9,6 +9,7 @@
     "dev:web": "npm --workspace @rtcp/web run dev",
     "dev:realtime": "npm --workspace @rtcp/realtime run dev",
     "build": "npm run -ws build",
-    "test": "npm run -ws test"
+    "test": "npm run -ws test",
+    "typecheck": "npm run -ws typecheck"
   }
 }

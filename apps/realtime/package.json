@@ -1,15 +1,16 @@
 {
   "name": "@rtcp/realtime",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run"
   },
   "dependencies": {
-    "@rtcp/shared": "0.1.0",
+    "@rtcp/shared": "0.2.0",
     "ioredis": "^5.4.1",
     "pg": "^8.12.0",
     "pino": "^9.3.2",
