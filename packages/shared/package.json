@@ -1,0 +1,14 @@
+{
+  "name": "@rtcp/shared",
+  "version": "0.2.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "echo 'shared package has source-only exports'",
+    "typecheck": "tsc --noEmit ../../tsconfig.base.json",
+    "test": "echo 'no shared tests yet'"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}
